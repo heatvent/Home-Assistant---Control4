@@ -24,114 +24,142 @@ def send_udp_command(command, host, port):
     
 def setup(hass, config):
     
-    # Garage
+    # Zone 1
     
-    def handle_garage_amp_off_select(call):
+    def handle_zone1_amp_off_select(call):
         #_LOGGER.warn("Powering AMP Off...")
         send_udp_command("c4.amp.out 01 00", ip_address, 8750)
         #_LOGGER.warn("AMP Powered Off...")
  
-    def handle_garage_amp_on_select(call):
+    def handle_zone1_amp_on_select(call):
         #_LOGGER.warn("Powering AMP On...")
-        amp_input = hass.states.get("input_select.garage_amp_input").state[:1]
-        tuner_station = hass.states.get("input_select.garage_radio_stations").state
+        amp_input = hass.states.get("input_select.zone1_amp_input").state[:1]
+        tuner_station = hass.states.get("input_select.zone1_radio_stations").state
         send_udp_command("c4.amp.chvol 01 a9", ip_address, 8750)
         send_udp_command("c4.amp.out 01 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("AMP Powered On...")
         
-    def handle_garage_amp_volume_select(call):
+    def handle_zone1_amp_volume_select(call):
         #_LOGGER.warn("Changing amp volume...")
-        volume_select = hass.states.get("input_number.garage_amp_volume").state
+        volume_select = hass.states.get("input_number.zone1_amp_volume").state
         volume_select = int(float(volume_select) * 100) + 160
         volume_select = hex(volume_select)[2:]
         send_udp_command("c4.amp.chvol 01 " + volume_select, ip_address, 8750)
         #_LOGGER.warn("Volume set...")
         
-    def handle_garage_amp_input_select(call):
+    def handle_zone1_amp_input_select(call):
         #_LOGGER.warn("Changing amp input...")
-        amp_input = hass.states.get("input_select.garage_amp_input").state[:1]
+        amp_input = hass.states.get("input_select.zone1_amp_input").state[:1]
         amp_input = hex(int(amp_input))[2:]
         send_udp_command("c4.amp.out 01 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("Amp input changed...")
         
-        # Great Room
+        # Zone 2
         
-    def handle_gr_amp_off_select(call):
-        #_LOGGER.warn("Powering AMP Off...")
-        send_udp_command("c4.amp.out 03 00", ip_address, 8750)
-        send_udp_command("c4.amp.out 04 00", ip_address, 8750)
-        #_LOGGER.warn("AMP Powered Off...")
- 
-    def handle_gr_amp_on_select(call):
-        #_LOGGER.warn("Powering AMP On...")
-        amp_input = hass.states.get("input_select.gr_amp_input").state[:1]
-        tuner_station = hass.states.get("input_select.gr_radio_stations").state
-        send_udp_command("c4.amp.chvol 03 a9", ip_address, 8750)
-        send_udp_command("c4.amp.chvol 04 a9", ip_address, 8750)
-        send_udp_command("c4.amp.out 03 0" + amp_input, ip_address, 8750)
-        send_udp_command("c4.amp.out 04 0" + amp_input, ip_address, 8750)
-        #_LOGGER.warn("AMP Powered On...")
-        
-    def handle_gr_amp_volume_select(call):
-        #_LOGGER.warn("Changing amp volume...")
-        volume_select = hass.states.get("input_number.gr_amp_volume").state
-        volume_select = int(float(volume_select) * 100) + 160
-        volume_select = hex(volume_select)[2:]
-        send_udp_command("c4.amp.chvol 03 " + volume_select, ip_address, 8750)
-        send_udp_command("c4.amp.chvol 04 " + volume_select, ip_address, 8750)
-        #_LOGGER.warn("Volume set...")
-        
-    def handle_gr_amp_input_select(call):
-        #_LOGGER.warn("Changing amp input...")
-        amp_input = hass.states.get("input_select.gr_amp_input").state[:1]
-        amp_input = hex(int(amp_input))[2:]
-        send_udp_command("c4.amp.out 03 0" + amp_input, ip_address, 8750)
-        send_udp_command("c4.amp.out 04 0" + amp_input, ip_address, 8750)
-        #_LOGGER.warn("Amp input changed...")
-        
-        # Lanai
-        
-    def handle_lanai_amp_off_select(call):
+    def handle_zone2_amp_off_select(call):
         #_LOGGER.warn("Powering AMP Off...")
         send_udp_command("c4.amp.out 02 00", ip_address, 8750)
         #_LOGGER.warn("AMP Powered Off...")
  
-    def handle_lanai_amp_on_select(call):
+    def handle_zone2_amp_on_select(call):
         #_LOGGER.warn("Powering AMP On...")
-        amp_input = hass.states.get("input_select.lanai_amp_input").state[:1]
+        amp_input = hass.states.get("input_select.zone2_amp_input").state[:1]
         tuner_station = hass.states.get("input_select.gr_radio_stations").state
         send_udp_command("c4.amp.chvol 02 a9", ip_address, 8750)
         send_udp_command("c4.amp.out 02 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("AMP Powered On...")
         
-    def handle_lanai_amp_volume_select(call):
+    def handle_zone2_amp_volume_select(call):
         #_LOGGER.warn("Changing amp volume...")
-        volume_select = hass.states.get("input_number.lanai_amp_volume").state
+        volume_select = hass.states.get("input_number.zone2_amp_volume").state
         volume_select = int(float(volume_select) * 100) + 160
         volume_select = hex(volume_select)[2:]
         send_udp_command("c4.amp.chvol 02 " + volume_select, ip_address, 8750)
         #_LOGGER.warn("Volume set...")
         
-    def handle_lanai_amp_input_select(call):
+    def handle_zone2_amp_input_select(call):
         #_LOGGER.warn("Changing amp input...")
-        amp_input = hass.states.get("input_select.lanai_amp_input").state[:1]
+        amp_input = hass.states.get("input_select.zone2_amp_input").state[:1]
         amp_input = hex(int(amp_input))[2:]
         send_udp_command("c4.amp.out 02 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("Amp input changed...")
         
+         # Zone 3
         
-    hass.services.register(DOMAIN, 'handle_garage_amp_off_select', handle_garage_amp_off_select)
-    hass.services.register(DOMAIN, 'handle_garage_amp_on_select', handle_garage_amp_on_select)
-    hass.services.register(DOMAIN, 'handle_garage_amp_volume_select', handle_garage_amp_volume_select)
-    hass.services.register(DOMAIN, 'handle_garage_amp_input_select', handle_garage_amp_input_select)
-    hass.services.register(DOMAIN, 'handle_gr_amp_off_select', handle_gr_amp_off_select)
-    hass.services.register(DOMAIN, 'handle_gr_amp_on_select', handle_gr_amp_on_select)
-    hass.services.register(DOMAIN, 'handle_gr_amp_volume_select', handle_gr_amp_volume_select)
-    hass.services.register(DOMAIN, 'handle_gr_amp_input_select', handle_gr_amp_input_select)
-    hass.services.register(DOMAIN, 'handle_lanai_amp_off_select', handle_lanai_amp_off_select)
-    hass.services.register(DOMAIN, 'handle_lanai_amp_on_select', handle_lanai_amp_on_select)
-    hass.services.register(DOMAIN, 'handle_lanai_amp_volume_select', handle_lanai_amp_volume_select)
-    hass.services.register(DOMAIN, 'handle_lanai_amp_input_select', handle_lanai_amp_input_select)
+    def handle_zone3_amp_off_select(call):
+        #_LOGGER.warn("Powering AMP Off...")
+        send_udp_command("c4.amp.out 03 00", ip_address, 8750)
+        #_LOGGER.warn("AMP Powered Off...")
+ 
+    def handle_zone3_amp_on_select(call):
+        #_LOGGER.warn("Powering AMP On...")
+        amp_input = hass.states.get("input_select.zone3_amp_input").state[:1]
+        tuner_station = hass.states.get("input_select.gr_radio_stations").state
+        send_udp_command("c4.amp.chvol 03 a9", ip_address, 8750)
+        send_udp_command("c4.amp.out 03 0" + amp_input, ip_address, 8750)
+        #_LOGGER.warn("AMP Powered On...")
+        
+    def handle_zone3_amp_volume_select(call):
+        #_LOGGER.warn("Changing amp volume...")
+        volume_select = hass.states.get("input_number.zone3_amp_volume").state
+        volume_select = int(float(volume_select) * 100) + 160
+        volume_select = hex(volume_select)[2:]
+        send_udp_command("c4.amp.chvol 03 " + volume_select, ip_address, 8750)
+        #_LOGGER.warn("Volume set...")
+        
+    def handle_zone3_amp_input_select(call):
+        #_LOGGER.warn("Changing amp input...")
+        amp_input = hass.states.get("input_select.zone3_amp_input").state[:1]
+        amp_input = hex(int(amp_input))[2:]
+        send_udp_command("c4.amp.out 03 0" + amp_input, ip_address, 8750)
+        #_LOGGER.warn("Amp input changed...")
+        
+        # Zone 4
+        
+    def handle_zone4_amp_off_select(call):
+        #_LOGGER.warn("Powering AMP Off...")
+        send_udp_command("c4.amp.out 04 00", ip_address, 8750)
+        #_LOGGER.warn("AMP Powered Off...")
+ 
+    def handle_zone4_amp_on_select(call):
+        #_LOGGER.warn("Powering AMP On...")
+        amp_input = hass.states.get("input_select.zone4_amp_input").state[:1]
+        tuner_station = hass.states.get("input_select.gr_radio_stations").state
+        send_udp_command("c4.amp.chvol 04 a9", ip_address, 8750)
+        send_udp_command("c4.amp.out 04 0" + amp_input, ip_address, 8750)
+        #_LOGGER.warn("AMP Powered On...")
+        
+    def handle_zone4_amp_volume_select(call):
+        #_LOGGER.warn("Changing amp volume...")
+        volume_select = hass.states.get("input_number.zone4_amp_volume").state
+        volume_select = int(float(volume_select) * 100) + 160
+        volume_select = hex(volume_select)[2:]
+        send_udp_command("c4.amp.chvol 04 " + volume_select, ip_address, 8750)
+        #_LOGGER.warn("Volume set...")
+        
+    def handle_zone3_amp_input_select(call):
+        #_LOGGER.warn("Changing amp input...")
+        amp_input = hass.states.get("input_select.zone4_amp_input").state[:1]
+        amp_input = hex(int(amp_input))[2:]
+        send_udp_command("c4.amp.out 04 0" + amp_input, ip_address, 8750)
+        #_LOGGER.warn("Amp input changed...")
+        
+    hass.services.register(DOMAIN, 'handle_zone1_amp_off_select', handle_zone1_amp_off_select)
+    hass.services.register(DOMAIN, 'handle_zone1_amp_on_select', handle_zone1_amp_on_select)
+    hass.services.register(DOMAIN, 'handle_zone1_amp_volume_select', handle_zone1_amp_volume_select)
+    hass.services.register(DOMAIN, 'handle_zone1_amp_input_select', handle_zone1_amp_input_select)
+    hass.services.register(DOMAIN, 'handle_zone2_amp_off_select', handle_zone2_amp_off_select)
+    hass.services.register(DOMAIN, 'handle_zone2_amp_on_select', handle_zone2_amp_on_select)
+    hass.services.register(DOMAIN, 'handle_zone2_amp_volume_select', handle_zone2_amp_volume_select)
+    hass.services.register(DOMAIN, 'handle_zone2_amp_input_select', handle_zone2_amp_input_select)
+    hass.services.register(DOMAIN, 'handle_zone3_amp_off_select', handle_zone3_amp_off_select)
+    hass.services.register(DOMAIN, 'handle_zone3_amp_on_select', handle_zone3_amp_on_select)
+    hass.services.register(DOMAIN, 'handle_zone3_amp_volume_select', handle_zone3_amp_volume_select)
+    hass.services.register(DOMAIN, 'handle_zone3_amp_input_select', handle_zone3_amp_input_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_off_select', handle_zone2_amp_off_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_on_select', handle_zone2_amp_on_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_volume_select', handle_zone2_amp_volume_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_input_select', handle_zone2_amp_input_select)
 
     # Return boolean to indicate that initialization was successfull.
     return True
