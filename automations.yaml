@@ -5,13 +5,6 @@
     entity_id: input_number.garage_amp_volume
   action:
   - service: c4_services.handle_garage_amp_volume_select
-- id: Garage Radio Tuner
-  alias: Garage Radio Tuner
-  trigger:
-    platform: state
-    entity_id: input_select.garage_radio_stations
-  action:
-    service: c4_services.handle_garage_tuner_channel_select
 - id: Garage AMP Input
   alias: Garage Amp Input
   trigger:
@@ -68,13 +61,6 @@
     entity_id: input_number.gr_amp_volume
   action:
   - service: c4_services.handle_gr_amp_volume_select
-- id: Great Room Radio Tuner
-  alias: Great Room Radio Tuner
-  trigger:
-    platform: state
-    entity_id: input_select.gr_radio_stations
-  action:
-    service: c4_services.handle_gr_tuner_channel_select
 - id: Great Room AMP Input
   alias: Great Room Amp Input
   trigger:
@@ -131,13 +117,6 @@
     entity_id: input_number.lanai_amp_volume
   action:
   - service: c4_services.handle_lanai_amp_volume_select
-- id: Lanai Radio Tuner
-  alias: Lanai Radio Tuner
-  trigger:
-    platform: state
-    entity_id: input_select.lanai_radio_stations
-  action:
-    service: c4_services.handle_lanai_tuner_channel_select
 - id: Lanai AMP Input
   alias: Lanai Amp Input
   trigger:
