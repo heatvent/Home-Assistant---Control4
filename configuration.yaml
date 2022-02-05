@@ -3,16 +3,6 @@ c4_services:
 
 
 input_select:
-  garage_radio_stations:
-    name: Radio Station
-    icon: mdi:radio
-    options:
-      - 94.9
-      - 99.5
-      - 103.5
-      - 105.5
-      - 106.3 
-      - 107.3
   garage_c4_input:
     name: Audio Input
     options:
@@ -25,16 +15,6 @@ input_select:
       - 1
       - 3
       - 4
-  gr_radio_stations:
-    name: Radio Station
-    icon: mdi:radio
-    options:
-      - 94.9
-      - 99.5
-      - 103.5
-      - 105.5
-      - 106.3 
-      - 107.3
   gr_c4_input:
     name: Audio Input
     options:
@@ -47,16 +27,6 @@ input_select:
       - 2
       - 3
       - 4
-  lanai_radio_stations:
-    name: Radio Station
-    icon: mdi:radio
-    options:
-      - 94.9
-      - 99.5
-      - 103.5
-      - 105.5
-      - 106.3 
-      - 107.3
   lanai_c4_input:
     name: Audio Input
     options:
