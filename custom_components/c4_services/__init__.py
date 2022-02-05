@@ -7,6 +7,7 @@ _LOGGER = logging.getLogger(__name__)
  
 DOMAIN = 'c4_services'
 
+# Variables
 ip_address = "192.168.X.XXX"
  
 def send_udp_command(command, host, port):
