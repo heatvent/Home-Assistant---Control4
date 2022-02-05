@@ -64,7 +64,7 @@ def setup(hass, config):
     def handle_zone2_amp_on_select(call):
         #_LOGGER.warn("Powering AMP On...")
         amp_input = hass.states.get("input_select.zone2_amp_input").state[:1]
-        tuner_station = hass.states.get("input_select.gr_radio_stations").state
+        tuner_station = hass.states.get("input_select.zone2_radio_stations").state
         send_udp_command("c4.amp.chvol 02 a9", ip_address, 8750)
         send_udp_command("c4.amp.out 02 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("AMP Powered On...")
@@ -94,7 +94,7 @@ def setup(hass, config):
     def handle_zone3_amp_on_select(call):
         #_LOGGER.warn("Powering AMP On...")
         amp_input = hass.states.get("input_select.zone3_amp_input").state[:1]
-        tuner_station = hass.states.get("input_select.gr_radio_stations").state
+        tuner_station = hass.states.get("input_select.zone2_radio_stations").state
         send_udp_command("c4.amp.chvol 03 a9", ip_address, 8750)
         send_udp_command("c4.amp.out 03 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("AMP Powered On...")
@@ -124,7 +124,7 @@ def setup(hass, config):
     def handle_zone4_amp_on_select(call):
         #_LOGGER.warn("Powering AMP On...")
         amp_input = hass.states.get("input_select.zone4_amp_input").state[:1]
-        tuner_station = hass.states.get("input_select.gr_radio_stations").state
+        tuner_station = hass.states.get("input_select.zone2_radio_stations").state
         send_udp_command("c4.amp.chvol 04 a9", ip_address, 8750)
         send_udp_command("c4.amp.out 04 0" + amp_input, ip_address, 8750)
         #_LOGGER.warn("AMP Powered On...")
@@ -156,10 +156,10 @@ def setup(hass, config):
     hass.services.register(DOMAIN, 'handle_zone3_amp_on_select', handle_zone3_amp_on_select)
     hass.services.register(DOMAIN, 'handle_zone3_amp_volume_select', handle_zone3_amp_volume_select)
     hass.services.register(DOMAIN, 'handle_zone3_amp_input_select', handle_zone3_amp_input_select)
-    hass.services.register(DOMAIN, 'handle_zone4_amp_off_select', handle_zone2_amp_off_select)
-    hass.services.register(DOMAIN, 'handle_zone4_amp_on_select', handle_zone2_amp_on_select)
-    hass.services.register(DOMAIN, 'handle_zone4_amp_volume_select', handle_zone2_amp_volume_select)
-    hass.services.register(DOMAIN, 'handle_zone4_amp_input_select', handle_zone2_amp_input_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_off_select', handle_zone4_amp_off_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_on_select', handle_zone4_amp_on_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_volume_select', handle_zone4_amp_volume_select)
+    hass.services.register(DOMAIN, 'handle_zone4_amp_input_select', handle_zone4_amp_input_select)
 
     # Return boolean to indicate that initialization was successfull.
     return True
