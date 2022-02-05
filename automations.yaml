@@ -1,168 +1,224 @@
-- id: Garage Amp Volume
-  alias: Garage Amp Volume
+- id: Zone 1 Amp Volume
+  alias: Zone 1 Amp Volume
   trigger:
     platform: state
-    entity_id: input_number.garage_amp_volume
+    entity_id: input_number.zone1_amp_volume
   action:
-  - service: c4_services.handle_garage_amp_volume_select
-- id: Garage AMP Input
-  alias: Garage Amp Input
+  - service: c4_services.handle_zone1_amp_volume_select
+- id: Zone 1 AMP Input
+  alias: Zone 1 AMP Input
   trigger:
     platform: state
-    entity_id: input_select.garage_amp_input
+    entity_id: input_select.zone1_amp_input
   action:
-    service: c4_services.handle_garage_amp_input_select
-- id: Garage AMP On
-  alias: Garage AMP On
+    service: c4_services.handle_zone1_amp_input_select
+- id: Zone 1 AMP On
+  alias: Zone 1 AMP On
   trigger:
     platform: state
-    entity_id: input_select.garage_amp_on
+    entity_id: input_select.zone1_amp_on
   action:
-    service: c4_services.handle_garage_amp_on_select
-- id: Garage AMP Off
-  alias: Garage Amp Off
+    service: c4_services.handle_zone1_amp_on_select
+- id: Zone 1 AMP Off
+  alias: Zone 1 AMP Off
   trigger:
     platform: state
-    entity_id: input_select.garage_amp_off
+    entity_id: input_select.zone1_amp_off
   action:
-    service: c4_services.handle_garage_amp_off_select
-- id: Garage Amp Input Override
-  alias: Garage Amp Input Override
+    service: c4_services.handle_zone1_amp_off_select
+- id: Zone 1 AMP Input Override
+  alias: Zone 1 AMP Input Override
   initial_state: true
   trigger:
     platform: state
-    entity_id: input_select.garage_c4_input
+    entity_id: input_select.zone1_c4_input
   action:
     service: input_select.select_option
-    entity_id: input_select.garage_amp_input
+    entity_id: input_select.zone1_amp_input
     data_template:
       option: >-
-        {% if is_state('input_select.garage_c4_input', 'Tuner') %}1
-        {% elif is_state('input_select.garage_c4_input', 'Tuner 2') %}2
-        {% elif is_state('input_select.garage_c4_input', 'Volumio') %}3
-        {% elif is_state('input_select.garage_c4_input', 'Bluetooth') %}4
+        {% if is_state('input_select.zone1_c4_input', 'Tuner') %}1
+        {% elif is_state('input_select.zone1_c4_input', 'Tuner 2') %}2
+        {% elif is_state('input_select.zone1_c4_input', 'Volumio') %}3
+        {% elif is_state('input_select.zone1_c4_input', 'Bluetooth') %}4
         {% else %}1 ### whatever you want to be default
         {%- endif %}
-- id: Garage Volume to 0
-  alias: Garage Volume to 0
+- id: Zone 1 AMP Volume to 0
+  alias: Zone 1 AMP Volume to 0
   trigger:
       platform: state
-      entity_id: switch.garage_switch
+      entity_id: switch.zone1_switch
       to: 'off'
   action:
     - service: input_number.set_value
       data_template:
-        entity_id: input_number.garage_amp_volume
+        entity_id: input_number.zone1_amp_volume
         value: .04
-- id: Great Room Amp Volume
-  alias: Great Room Amp Volume
+- id: Zone 2 AMP Volume
+  alias: Zone 2 AMP Volume
   trigger:
     platform: state
-    entity_id: input_number.gr_amp_volume
+    entity_id: input_number.zone2_amp_volume
   action:
-  - service: c4_services.handle_gr_amp_volume_select
-- id: Great Room AMP Input
-  alias: Great Room Amp Input
+  - service: c4_services.handle_zone2_amp_volume_select
+- id: Zone 2 AMP Input
+  alias: Zone 2 AMP Input
   trigger:
     platform: state
-    entity_id: input_select.gr_amp_input
+    entity_id: input_select.zone2_amp_input
   action:
-    service: c4_services.handle_gr_amp_input_select
-- id: Great Room AMP On
-  alias: Great Room AMP On
+    service: c4_services.handle_zone2_amp_input_select
+- id: Zone 2 AMP On
+  alias: Zone 2 AMP On
   trigger:
     platform: state
-    entity_id: input_select.gr_amp_on
+    entity_id: input_select.zone2_amp_on
   action:
-    service: c4_services.handle_gr_amp_on_select
-- id: Great Room AMP Off
-  alias: Great Room Amp Off
+    service: c4_services.handle_zone2_amp_on_select
+- id: Zone 2 AMP Off
+  alias: Zone 2 AMP Off
   trigger:
     platform: state
-    entity_id: input_select.gr_amp_off
+    entity_id: input_select.zone2_amp_off
   action:
-    service: c4_services.handle_gr_amp_off_select
-- id: Great Room Amp Input Override
-  alias: Great Room Amp Input Override
+    service: c4_services.handle_zone2_amp_off_select
+- id: Zone 2 AMP Input Override
+  alias: Zone 2 AMP Input Override
   initial_state: true
   trigger:
     platform: state
-    entity_id: input_select.gr_c4_input
+    entity_id: input_select.zone2_c4_input
   action:
     service: input_select.select_option
-    entity_id: input_select.gr_amp_input
+    entity_id: input_select.zone2_amp_input
     data_template:
       option: >-
-        {% if is_state('input_select.gr_c4_input', 'Tuner 1') %}1
-        {% elif is_state('input_select.gr_c4_input', 'Tuner') %}2
-        {% elif is_state('input_select.gr_c4_input', 'Volumio') %}3
-        {% elif is_state('input_select.gr_c4_input', 'Bluetooth') %}4
+        {% if is_state('input_select.zone2_c4_input', 'Tuner 1') %}1
+        {% elif is_state('input_select.zone2_c4_input', 'Tuner') %}2
+        {% elif is_state('input_select.zone2_c4_input', 'Volumio') %}3
+        {% elif is_state('input_select.zone2_c4_input', 'Bluetooth') %}4
         {% else %}2 ### whatever you want to be default
         {%- endif %}
-- id: Great Room Volume to 0
-  alias: Great Room Volume to 0
+- id: Zone 2 AMP Volume to 0
+  alias: Zone 2 AMP Volume to 0
   trigger:
       platform: state
-      entity_id: switch.gr_switch
+      entity_id: switch.zone2_switch
       to: 'off'
   action:
     - service: input_number.set_value
       data_template:
-        entity_id: input_number.gr_amp_volume
+        entity_id: input_number.zone2_amp_volume
         value: .04
-- id: Lanai Amp Volume
-  alias: Lanai Amp Volume
+- id: Zone 3 AMP Volume
+  alias: Zone 3 AMP Volume
   trigger:
     platform: state
-    entity_id: input_number.lanai_amp_volume
+    entity_id: input_number.zone3_amp_volume
   action:
-  - service: c4_services.handle_lanai_amp_volume_select
-- id: Lanai AMP Input
-  alias: Lanai Amp Input
+  - service: c4_services.handle_zone3_amp_volume_select
+- id: Zone 3 AMP Input
+  alias: Zone 3 AMP Input
   trigger:
     platform: state
-    entity_id: input_select.lanai_amp_input
+    entity_id: input_select.zone3_amp_input
   action:
-    service: c4_services.handle_lanai_amp_input_select
-- id: Lanai AMP On
-  alias: Lanai AMP On
+    service: c4_services.handle_zone3_amp_input_select
+- id: Zone 3 AMP On
+  alias: Zone 3 AMP On
   trigger:
     platform: state
-    entity_id: input_select.lanai_amp_on
+    entity_id: input_select.zone3_amp_on
   action:
-    service: c4_services.handle_lanai_amp_on_select
-- id: Lanai AMP Off
-  alias: Lanai Amp Off
+    service: c4_services.handle_zone3_amp_on_select
+- id: Zone 3 AMP Off
+  alias: Zone 3 AMP Off
   trigger:
     platform: state
-    entity_id: input_select.lanai_amp_off
+    entity_id: input_select.zone3_amp_off
   action:
-    service: c4_services.handle_lanai_amp_off_select
-- id: Lanai Amp Input Override
-  alias: Lanai Amp Input Override
+    service: c4_services.handle_zone3_amp_off_select
+- id: Zone 3 AMP Input Override
+  alias: Zone 3 AMP Input Override
   initial_state: true
   trigger:
     platform: state
-    entity_id: input_select.lanai_c4_input
+    entity_id: input_select.zone3_c4_input
   action:
     service: input_select.select_option
-    entity_id: input_select.lanai_amp_input
+    entity_id: input_select.zone3_amp_input
     data_template:
       option: >-
-        {% if is_state('input_select.lanai_c4_input', 'Tuner 1') %}1
-        {% elif is_state('input_select.lanai_c4_input', 'Tuner') %}2
-        {% elif is_state('input_select.lanai_c4_input', 'Volumio') %}3
-        {% elif is_state('input_select.lanai_c4_input', 'Bluetooth') %}4
+        {% if is_state('input_select.zone3_c4_input', 'Tuner 1') %}1
+        {% elif is_state('input_select.zone3_c4_input', 'Tuner') %}2
+        {% elif is_state('input_select.zone3_c4_input', 'Volumio') %}3
+        {% elif is_state('input_select.zone3_c4_input', 'Bluetooth') %}4
         {% else %}2 ### whatever you want to be default
         {%- endif %}
-- id: Lanai Volume to 0
-  alias: Lanai Volume to 0
+- id: Zone 3 AMP Volume to 0
+  alias: Zone 3 AMP Volume to 0
   trigger:
       platform: state
-      entity_id: switch.lanai_switch
+      entity_id: switch.zone3_switch
       to: 'off'
   action:
     - service: input_number.set_value
       data_template:
-        entity_id: input_number.lanai_amp_volume
+        entity_id: input_number.zone3_amp_volume
+        value: .04
+- id: Zone 4 AMP Volume
+  alias: Zone 4 AMP Volume
+  trigger:
+    platform: state
+    entity_id: input_number.zone4_amp_volume
+  action:
+  - service: c4_services.handle_zone4_amp_volume_select
+- id: Zone 4 AMP Input
+  alias: Zone 4 AMP Input
+  trigger:
+    platform: state
+    entity_id: input_select.zone4_amp_input
+  action:
+    service: c4_services.handle_zone4_amp_input_select
+- id: Zone 4 AMP On
+  alias: Zone 4 AMP On
+  trigger:
+    platform: state
+    entity_id: input_select.zone4_amp_on
+  action:
+    service: c4_services.handle_zone4_amp_on_select
+- id: Zone 4 AMP Off
+  alias: Zone 4 AMP Off
+  trigger:
+    platform: state
+    entity_id: input_select.zone4_amp_off
+  action:
+    service: c4_services.handle_zone4_amp_off_select
+- id: Zone 4 AMP Input Override
+  alias: Zone 4 AMP Input Override
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.zone4_c4_input
+  action:
+    service: input_select.select_option
+    entity_id: input_select.zone4_amp_input
+    data_template:
+      option: >-
+        {% if is_state('input_select.zone4_c4_input', 'Tuner 1') %}1
+        {% elif is_state('input_select.zone4_c4_input', 'Tuner') %}2
+        {% elif is_state('input_select.zone4_c4_input', 'Volumio') %}3
+        {% elif is_state('input_select.zone4_c4_input', 'Bluetooth') %}4
+        {% else %}2 ### whatever you want to be default
+        {%- endif %}
+- id: Zone 4 AMP Volume to 0
+  alias: Zone 4 AMP Volume to 0
+  trigger:
+      platform: state
+      entity_id: switch.zone4_switch
+      to: 'off'
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.zone4_amp_volume
         value: .04
