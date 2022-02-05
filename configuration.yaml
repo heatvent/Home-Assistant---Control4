@@ -1,39 +1,50 @@
 # Service
 c4_services:
 
-
 input_select:
-  garage_c4_input:
+  zone1_c4_input:
     name: Audio Input
     options:
       - Tuner
       - Volumio
       - Bluetooth
-  garage_amp_input:
+  zone1_amp_input:
     name: Zone Input
     options:
       - 1
       - 3
       - 4
-  gr_c4_input:
+  zone2_c4_input:
     name: Audio Input
     options:
       - Tuner
       - Volumio
       - Bluetooth
-  gr_amp_input:
+  zone2_input:
     name: Zone Input
     options:
       - 2
       - 3
       - 4
-  lanai_c4_input:
+  zone3_c4_input:
     name: Audio Input
     options:
       - Tuner
       - Volumio
       - Bluetooth
-  lanai_amp_input:
+  zone3_amp_input:
+    name: Zone Input
+    options:
+      - 2
+      - 3
+      - 4      
+  zone4_c4_input:
+    name: Audio Input
+    options:
+      - Tuner
+      - Volumio
+      - Bluetooth
+  zone4_amp_input:
     name: Zone Input
     options:
       - 2
@@ -41,76 +52,99 @@ input_select:
       - 4
       
 input_number:
-  garage_amp_volume:
+  zone1_amp_volume:
     name: Volume
     min: 0
     max: 1
     step: .01
     initial: .04
-  gr_amp_volume:
+  zone2_amp_volume:
     name: Volume
     min: 0
     max: 1
     step: .01
     initial: .04
-  lanai_amp_volume:
+  zone3_amp_volume:
     name: Volume
     min: 0
     max: 1
     step: .01
     initial: .04
-    
+  zone4_amp_volume:
+    name: Volume
+    min: 0
+    max: 1
+    step: .01
+    initial: .04  
+  
 input_boolean:
   switch_state_1:
-    name: Garage Switch
+    name: Zone 1 Switch
   switch_state_2:
-    name: Great Room Switch
+    name: Zone 2 Switch
   switch_state_3:
-    name: Lanai Switch
+    name: Zone 3 Switch
+  switch_state_4:
+    name: Zone 4 Switch
     
 switch:
   - platform: template
     switches:
-      garage_switch:
-        friendly_name: Garage
+      zone1_switch:
+        friendly_name: Zone 1
         value_template: "{{ is_state('input_boolean.switch_state_1', 'on') }}"
         turn_on:
-          - service: c4_services.handle_garage_amp_on_select
+          - service: c4_services.handle_zone1_amp_on_select
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.switch_state_1
         turn_off:
-          - service: c4_services.handle_garage_amp_off_select
+          - service: c4_services.handle_zone1_amp_off_select
           - service: input_boolean.turn_off
             data:
               entity_id: input_boolean.switch_state_1
   - platform: template
     switches:
-      gr_switch:
-        friendly_name: Great Room
+      zone2_switch:
+        friendly_name: Zone 2
         value_template: "{{ is_state('input_boolean.switch_state_2', 'on') }}"
         turn_on:
-          - service: c4_services.handle_gr_amp_on_select
+          - service: c4_services.handle_zone2_amp_on_select
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.switch_state_2
         turn_off:
-          - service: c4_services.handle_gr_amp_off_select
+          - service: c4_services.handle_zone2_amp_off_select
           - service: input_boolean.turn_off
             data:
               entity_id: input_boolean.switch_state_2
   - platform: template
     switches:
-      lanai_switch:
-        friendly_name: Lanai
+      zone3_switch:
+        friendly_name: Zone 3
         value_template: "{{ is_state('input_boolean.switch_state_3', 'on') }}"
         turn_on:
-          - service: c4_services.handle_lanai_amp_on_select
+          - service: c4_services.handle_zone3_amp_on_select
           - service: input_boolean.turn_on
             data:
               entity_id: input_boolean.switch_state_3
         turn_off:
-          - service: c4_services.handle_lanai_amp_off_select
+          - service: c4_services.handle_zone3_amp_off_select
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.switch_state_3              
+  - platform: template
+    switches:
+      zone4_switch:
+        friendly_name: Zone 4
+        value_template: "{{ is_state('input_boolean.switch_state_3', 'on') }}"
+        turn_on:
+          - service: c4_services.handle_zone3_amp_on_select
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.switch_state_3
+        turn_off:
+          - service: c4_services.handle_zone3_amp_off_select
           - service: input_boolean.turn_off
             data:
               entity_id: input_boolean.switch_state_3
