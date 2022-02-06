@@ -133,7 +133,7 @@ def setup(hass, config):
         send_udp_command("c4.amp.chvol 04 " + volume_select, ip_address, 8750)
         _LOGGER.info("Volume set...")
         
-    def handle_zone3_amp_input_select(call):
+    def handle_zone4_amp_input_select(call):
         _LOGGER.info("Changing amp input...")
         amp_input = hass.states.get("input_select.zone4_amp_input").state[:1]
         amp_input = hex(int(amp_input))[2:]
